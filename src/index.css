@@ -1,13 +1,62 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+  --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Variables de colores según CONVENTIONS.md */
+  --bg-color: #0F1115;
+  --surface-color: #161A22;
+  --surface-2-color: #1E2430;
+  --border-color: #2A3142;
+
+  --text-color: #E6EAF2;
+  --text-muted: #9AA3B2;
+  --text-disabled: #5E6678;
+
+  --primary-color: #C7F000;
+  --primary-hover: #B6DB00;
+  --primary-soft: rgba(199, 240, 0, 0.15);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #0b134e,
+    #000000
+  );
+  color: var(--text-color);
+}
+
+/* Clases de utilidad para colores de fondo */
+.bg-surface {
+  background-color: var(--surface-color) !important;
+}
+
+.bg-surface-2 {
+  background-color: var(--surface-2-color) !important;
+}
+
+.hover-surface:hover {
+  background-color: var(--surface-2-color);
+  color: var(--text-color) !important;
+  transition: all 0.2s ease;
+}
+
+/* Bootstrap overrides si es necesario */
+.text-muted {
+  color: var(--text-muted) !important;
 }
