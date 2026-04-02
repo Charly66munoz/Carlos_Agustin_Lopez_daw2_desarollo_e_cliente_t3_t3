@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../service/ProductService";
 import { Alert } from "react-bootstrap";
-const Products = () => {
+
+const Products = ({ addToCart }) => {
+
     const [products,setProducts] = useState([]);
     const [error, setError] = useState("")
-            useEffect(() => {
-            getProducts().then(data => {/*setProducts(data)*/;
-            
-                let items = data.products.map(prdcto => ({
-                    id: prdcto.id,
-                    name: prdcto.title,
-                    description: prdcto.description,
-                    category: prdcto.category,
-                    price: prdcto.price,
-                    images: prdcto.images[0]
-                }));
-                setProducts(items)    
-            }).catch(() => {
-        setError("Error fetch");
 
-        setTimeout(() => {
-          setError("");
-        }, 2500);
-      });
-  }, []);
+    useEffect(() => {
+        getProducts().then(data => {   
+            let items = data.products.map(prdcto => ({ // creamos un array iterando el resultado de la peticion
+                id: prdcto.id,
+                name: prdcto.title,
+                description: prdcto.description,
+                category: prdcto.category,
+                price: prdcto.price,
+                images: prdcto.images[0]
+             }));
+            setProducts(items) //Guardamos el objeto entero   
+            }).catch(() => {
+                setError("Error fetch");
+
+                setTimeout(() => {
+                setError("");
+                }, 2500);
+            });
+    }, []);
     return(
      <>
         {error  && (
@@ -31,20 +33,21 @@ const Products = () => {
                 {error}
             </Alert>
         )}
-        <div className="row gap-3 mt-3 d-flex justify-content-center">
+        <div className="row gap-5 mt-3 d-flex justify-content-center">
         {products.map(p => (
-                <div key={p.id}  className="card col-4" style={{width: "16rem"}}>
+            <div key={p.id}  className="card col-4 p-0" style={{width: "16rem"}}>
                 <img src={p.images} className="card-img-top" alt="..."></img>
-                <div className="card-body">
+                <div className="card-body p-0">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description.substring(0, 60)}...</p>
                     <p className="fw-bold">${p.price}</p>
                 </div>
-                    <button className="btn btn-primary">
-                        Añadir al carrito
-                    </button>
-                </div>
-      ))}
+                <button className="btn btn-primary" onClick={()=>addToCart(p)}>
+                    Añadir al carrito
+                </button>
+            </div>
+        ))}
+        
       </div>
      </>   
     )
