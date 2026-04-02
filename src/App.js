@@ -3,11 +3,10 @@ import './App.css';
 import AppRouter from "./routes/AppRouter"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 function App() {
   const [cart, setCart] = useState([])
-  const [price, setPrice] = useState(0)
 
   const addToCart = (product) => {
     let exist = cart.find(p => p.id === product.id); //verificamos la existencia del producto
@@ -36,11 +35,6 @@ function App() {
       setCart(cart.filter(p => p.id !== product.id));
     }
   };
-
-  useEffect(() => {
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    setPrice(total);
-  }, [cart]);
 
   const clearCart = () => {
     setCart([]);
