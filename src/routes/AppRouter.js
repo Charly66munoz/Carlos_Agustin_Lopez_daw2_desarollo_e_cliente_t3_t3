@@ -5,7 +5,7 @@ import LandingPage from "../pages/LandingPage"
 import Cart from "../pages/Cart"
 import Products from "../pages/Products"
 
-const AppRouter= ({cart, addToCart, removeFromCart})=>{
+const AppRouter= ({cart, addToCart, removeFromCart, clearCart})=>{
     return(
         <>
             <Routes>
@@ -13,7 +13,7 @@ const AppRouter= ({cart, addToCart, removeFromCart})=>{
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/products" element={<Products addToCart={addToCart}/>} />
                     {/*<Route path="/products/:id" element={<Product />} /> No se si lo voy hacer */}
-                    <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} addToCart={addToCart} />} />
+                    <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} addToCart={addToCart} clearCart={clearCart} />} />
                 </Route>
             </Routes>
         </>

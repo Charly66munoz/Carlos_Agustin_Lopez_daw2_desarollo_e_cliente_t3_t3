@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
 import {  useNavigate } from "react-router-dom";
 import Products from "./Products"
+import ConfirmActionAlert from "../components/sweetAlert/ConfirmActionAlert";
 
-
-const Cart = ({ cart , removeFromCart , addToCart}) => {
+const Cart = ({ cart , removeFromCart , addToCart , clearCart }) => {
  
     const navigate = useNavigate();
     
@@ -20,6 +20,11 @@ const Cart = ({ cart , removeFromCart , addToCart}) => {
         let sum = cart.reduce((prevValue, currentValue) => prevValue + currentValue.price * currentValue.quantity,0)
         total = String(sum.toFixed(2)).replace('.',',')   
     }
+
+    const handleBy = ()=>{
+        
+    }
+
     return(
         <>
             {cart.length === 0  ? 
@@ -38,7 +43,8 @@ const Cart = ({ cart , removeFromCart , addToCart}) => {
                     </div>
                     <div className="col-2 card d-flex justify-content-start p-2">
                         <h4>Carrito:</h4>
-                        <h5>Total: {total}</h5>
+                        <h5>Total: {total}€</h5>
+                            <ConfirmActionAlert total={total} clearCart={clearCart}  />
                         <ul className="list-group list-group-flush">
                         {cart.map(p =>(
                             
@@ -63,7 +69,6 @@ const Cart = ({ cart , removeFromCart , addToCart}) => {
                             ))                
                         }
                         </ul>
-                        
                     </div>
                 </div>
             }

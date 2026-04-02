@@ -42,9 +42,14 @@ function App() {
       setPrice(price + item.price)
     });
   },[cart])
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return(
     <Router>
-      <AppRouter cart={cart} addToCart={addToCart} removeFromCart={removeFromCart}/>
+      <AppRouter cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart}/>
     </Router>
   );
 }
