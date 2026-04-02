@@ -20,11 +20,6 @@ const Cart = ({ cart , removeFromCart , addToCart , clearCart }) => {
         let sum = cart.reduce((prevValue, currentValue) => prevValue + currentValue.price * currentValue.quantity,0)
         total = String(sum.toFixed(2)).replace('.',',')   
     }
-
-    const handleBy = ()=>{
-        
-    }
-
     return(
         <>
             {cart.length === 0  ? 
